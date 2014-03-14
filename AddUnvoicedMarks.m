@@ -6,9 +6,8 @@ diff = marks(2:end) - marks(1:end-1);
 
 idx = find(diff > 400);
 idx = [1 idx];
-idx
 
-delta = (0.01*fs);
+delta = floor(0.01*fs);
 new_marks = [];
 for i=2:length(idx)
     num_add = floor(diff(idx(i)) / delta);

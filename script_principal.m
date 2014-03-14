@@ -9,7 +9,7 @@ global config;
 config.pitchScale           = 1.5;	%pitch scale ratio
 config.timeScale            = 1;	%time scale ratio
 config.cutOffFreq           = 900;	%cut of frequency for lowpass filter
-config.fileIn               = '../base_kawa_psola/rl001.wav';		%input file full path and name
+config.fileIn               = '../base_kawa_psola/rl008.wav';		%input file full path and name
 config.fileOut              = '../plus_aigu_psola.wav';		%output file full path and name
 
 %data contain analysis results
@@ -30,3 +30,21 @@ PlotPitchMarks(WaveIn, data.candidates, data.pitchMarks, PitchContour); %show th
 
 marks = AddUnvoicedMarks(data.pitchMarks, PitchContour, fs);
 PlotPitchMarks(WaveIn, data.candidates, marks(1,:), PitchContour);
+
+%% synth test
+
+in_marks = marks(1,:);
+% out_marks = zeros(1,2*length(marks));
+% out_marks(1:2:end) = in_marks;
+% out_marks(2:2:end) = in_marks + [floor(diff(in_marks)/2) 100];
+% out_marks = floor(2*out_marks);
+% match = kron(1:length(in_marks), [1 1]);
+% 
+% out_marks = zeros(1,length(marks));
+% out_marks = in_marks(1:2:end);
+% out_marks = floor(0.5*out_marks);
+% match = 1:2:length(in_marks);
+
+[out_marks, match] = computeSMarks_simple(in_marks, 1.5, 1);
+wave_out = Synthesis(WaveIn, fs, marks(1,:), out_marks, match, 2);
+soundsc(wave_out, fs);
