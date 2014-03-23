@@ -24,9 +24,11 @@ function [s_marks, l] = computeSMarks_simple(a_marks, beta, gamma)
        i = i+1;
        s_marks = [s_marks floor(s_marks(i-1) + P(l(i-1))/beta)];
        l = [l 0];
-       [~, l(i)] = min(abs(a_marks-ones(1,len)*s_marks(i)/gamma));
+       [val, ind] = min(abs(a_marks-ones(1,len)*s_marks(i)/gamma));
+       l(i) = ind(1);
     end
 end
+
 
 
 function [k] = closer(s_t, a_marks, a_i, gamma)

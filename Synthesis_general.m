@@ -1,4 +1,4 @@
-function [ wave_out, weights_out ] = Synthesis( wave_in, fs, in_marks, out_marks, match, mu )
+function [ wave_out, weights_out ] = Synthesis_general( wave_in, fs, in_marks, out_marks, match, mu )
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -30,7 +30,7 @@ for i=1:1:length(match)
     wave_out(out_range) = wave_out(out_range) + frame;
     weights_out(out_range) = weights_out(out_range) + window;
 end
-wave_out = wave_out ./ weights_out;
+%wave_out = wave_out ./ weights_out;
 plot(weights_out);
 
 end

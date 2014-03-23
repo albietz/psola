@@ -1,7 +1,7 @@
 %--------------------------------------------------------------------------
 % Plot pitch marks found by pitch marking algorithm
 %--------------------------------------------------------------------------
-function PlotPitchMarks(s, ca, pm, p);
+function PlotPitchMarks(s, ca, pm, p)
 
 % normalization s and d
 s=max(p)/max(s)*s;
@@ -26,22 +26,22 @@ for (i = 1 : length(ca(:,1)) )
 end
 
 %plot T0 contour
-plot(p, '-b');
+plot(p, '-w');
 
 %fist candiates
 pm = ca(:, 1);
 pm = pm( find(pm) );
-plot(pm,s(pm),'*r');
+%plot(pm,s(pm),'*r');
 
 %second candiates
 pm = ca(:, 2);
 pm = pm( find(pm) );
-plot(pm,s(pm),'*m');
+%plot(pm,s(pm),'*m');
 
 %third candiates
 pm = ca(:, 3);
 pm = pm( find(pm) );
-plot(pm,s(pm),'*c');
+%plot(pm,s(pm),'*c');
 
 hold off;
 zoom xon;
